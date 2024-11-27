@@ -16,7 +16,7 @@ dp = Dispatcher()
 
 @dp.message(Command(commands=['start']))
 async def start_command(message: Message):
-    webAppInfo: types.WebAppInfo = types.WebAppInfo(url='https://pro.guap.ru')
+    webAppInfo: types.WebAppInfo = types.WebAppInfo(url='https://127.0.0.1:8000/')
     button1 = InlineKeyboardButton(text='Приложение', web_app=webAppInfo)
     keyboard = InlineKeyboardMarkup(inline_keyboard=[[button1]])
 
