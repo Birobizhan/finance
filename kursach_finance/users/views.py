@@ -7,7 +7,7 @@ from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, UpdateView
 
-from finance.kursach_finance.users.forms import LoginUserForm, RegisterUserForm, ProfileUserForm
+from users.forms import LoginUserForm, RegisterUserForm, ProfileUserForm
 
 
 # Create your views here.
@@ -20,7 +20,7 @@ class LoginUser(LoginView):
 
 class RegisterUser(CreateView):
     form_class = RegisterUserForm
-    template_name =  'users/register.html'
+    template_name = 'users/register.html'
     extra_context = {'title': 'Регистрация'}
     success_url = reverse_lazy('users:login')
 
