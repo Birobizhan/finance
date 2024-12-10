@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello world</title>
+</head>
+<body>
+<form id="logoutForm" method="post" action="{% url 'users:logout' %}">
+		{% csrf_token %}
+		<li class="last"> <a href="{% url 'users:profile' %}">{{user.username }}</a> | <a href="#" onclick="document.getElementById('logoutForm').submit(); return false;">Выйти</a></li>
+	</form>
+<ul class="list-articles">
+	{% for p in posts %}
+	<li><div class="article-panel">
+		<p class="first">Категория: {{p.cat}}</p>
+		<p class="last">Дата: {{p.time_update|date:"d-m-Y H:i:s"}}</p>
+	</div>
+			<h2>{{p.title}}</h2>
+    {% autoescape off %}
+	{{p.content|linebreaks|truncatewords:40}}
+    {% endautoescape %}
+			<div class="clear"></div>
+			<p class="link-read-post"><a href="{{ p.get_absolute_url }}">Читать пост</a></p>
+			</li>
+	{% endfor %}
+</ul>
+</body>
+</html>

@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.urls import reverse
+from django.template.defaultfilters import slugify
 
 
 # Create your models here.
@@ -21,11 +22,11 @@ class Finance_site(models.Model):
     cat = models.ForeignKey('Category', on_delete=models.PROTECT, related_name='posts', verbose_name='Категории')
     notes = models.TextField(blank=True, verbose_name='Заметки')
     amount = models.IntegerField()
-    author = models.ForeignKey(get_user_model(), on_delete=models.PROTECT, related_name='posts', verbose_name='Автор')
+    author = models.ForeignKey('auth.user', on_delete=models.PROTECT, verbose_name='Автор', editable=False)
     time_create = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
     # time_update = models.DateTimeField(auto_now=True, verbose_name='Время изменения')
     # Снимем из комментов, если сделаем такую функцию
-    slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='Slug')
+    # slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='Slug')
 
     objects = models.Manager()
     published = PublishedManager()
@@ -40,6 +41,10 @@ class Finance_site(models.Model):
         indexes = [
             models.Index(fields=['-time_create'])
         ]
+
+    # def save(self, *args, **kwargs):
+    #     self.slug = slugify(self.operation_name)
+    #     super().save(*args, **kwargs)
 
 
 class Category(models.Model):

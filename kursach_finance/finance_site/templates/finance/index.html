@@ -5,6 +5,19 @@
     <title>Hello world</title>
 </head>
 <body>
-<p>Привет, Мир</p>
+<h1>Добро пожаловать на сайт, для работы на нем зарегестрируйтесь</h1>
+{% if user.is_authenticated %}
+<!--	<li class="last">{{ user.username }} | <a href="{% url 'users:logout' %}">Выйти</a> </li>-->
+	<form id="logoutForm" method="post" action="{% url 'users:logout' %}">
+		{% csrf_token %}
+		<li class="last"> <a href="{% url 'users:profile' %}">{{user.username }}</a> | <a href="#" onclick="document.getElementById('logoutForm').submit(); return false;">Выйти</a></li>
+	</form>
+{% else %}
+
+	<li class="last"><a href="{% url 'users:login' %}">Войти</a> | <a href="{% url 'users:register' %}">Регистрация</a> </li>
+{% endif %}
+			</ul>
+			<div class="clear"></div>
+		</div>
 </body>
 </html>
