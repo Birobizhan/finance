@@ -65,9 +65,7 @@ class AddPage(LoginRequiredMixin, CreateView): # Класс с формой дл
 def create_chart(random_x):
     amount = [x[1] for x in random_x]
     cat = [x[0] for x in random_x]
-    operation_name = [x[2] for x in random_x]
-    print(operation_name)
-    fig = go.Figure(data=go.Pie(labels=cat, values=amount, textinfo='label+percent', hovertext=operation_name,
+    fig = go.Figure(data=go.Pie(labels=cat, values=amount, textinfo='label+percent',
                               hoverinfo='label+value+text'))
 
     # Сохранение графика в HTML
@@ -84,11 +82,11 @@ class Dashboard(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         random_x = list(
-            Finance_site.objects.filter(operation_type=1, author__username=self.request.user.username).values_list('cat__name', 'amount', 'operation_name'))
+            Finance_site.objects.filter(operation_type=1, author__username=self.request.user.username).values_list('cat__name', 'amount'))
         chart1 = create_chart(random_x)
         random_x = list(
             Finance_site.objects.filter(operation_type=0, author__username=self.request.user.username).values_list(
-                'cat__name', 'amount', 'operation_name'))
+                'cat__name', 'amount'))
         chart2 = create_chart(random_x)
         context['chart1'] = chart1
         context['chart2'] = chart2
