@@ -1,4 +1,6 @@
 from django import forms
+from django.contrib.auth import get_user_model
+from django.contrib.auth.middleware import get_user
 from django.core.exceptions import ValidationError
 from django.core.validators import MinLengthValidator, MaxLengthValidator
 from django.utils.deconstruct import deconstructible
@@ -7,13 +9,27 @@ from finance_site.models import Finance_site, Category
 
 
 class AddOperationForm(forms.ModelForm):
-    cat = forms.ModelChoiceField(queryset=Category.objects.all(), label='Категории', empty_label='Категория не выбрана')
+    cat1 = forms.ModelChoiceField(queryset=Category.objects.filter(type=0), label='Категории', required=False)
+    cat2 = forms.ModelChoiceField(queryset=Category.objects.filter(type=1), label='Категории', required=False)
 
     class Meta:
         model = Finance_site
-        fields = '__all__'
+        fields = ['operation_type', 'operation_name', 'amount', 'notes']
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-input'}),
-            'content': forms.Textarea(attrs={'cols': 50, 'rows': 5})
+            'operation_name': forms.TextInput(attrs={'class': 'form-input'}),
+            'notes': forms.Textarea(attrs={'cols': 50, 'rows': 5})
         }
-        labels = {'slug': 'URL'}
+
+    def clean_cat_id(self):
+        cleaned_data = super().clean()
+        field1_value = cleaned_data.get('cat1')
+        field2_value = cleaned_data.get('cat2')
+        print(field2_value, field1_value)
+
+        # Устанавливаем значение field1 в field2
+        if field1_value:
+            cleaned_data['cat'] = field1_value
+        else:
+            cleaned_data['cat'] = field2_value
+        return cleaned_data
+

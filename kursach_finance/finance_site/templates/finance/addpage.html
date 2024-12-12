@@ -1,20 +1,57 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{{title}}</title>
+    <script>
+        function toggleFields() {
+            const operation_type = document.getElementById('id_operation_type').value;
+            const field1 = document.getElementById('id_cat1');
+            const field2 = document.getElementById('id_cat2');
+            const additionalFields = document.getElementById('additionalFields');
+
+            if (operation_type === '0') {
+                field1.style.display = 'block';
+                field2.style.display = 'none';
+            } else if (operation_type === '1') {
+                field1.style.display = 'none';
+                field2.style.display = 'block';
+            }
+        }
+        window.onload = toggleFields;
+    </script>
 </head>
 <body>
-<h1>{{title}}</h1>
 <form action="" method="POST">
     {% csrf_token %}
     <div class="form-error">{{ for.non_field_errors }}</div>
     {% for f in form %}
-    <p><label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}</label>{{ f }}</p>
+        {% if f == form.cat1 %}
+    <p>Категории</p>
+            <div id="field1" style="display: block">
+            {{form.cat1}}
+            </div>
     <div class="form_error">{{ f.errors }}</div>
+        {% elif f == form.cat2 %}
+            <div id="field2" style="display: block">
+            {{form.cat2}}
+            </div>
+    <div class="form_error">{{ f.errors }}</div>
+        {%else%}
+            <p><label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}</label>{{ f }}</p>
+            <div class="form_error">{{ f.errors }}</div>
+        {% endif %}
     {% endfor %}
-    <p><button type="submit">Отправить</button> </p>
 
+
+
+    <p><button type="submit">Отправить</button> </p>
 </form>
+    <script>
+        document.getElementById('id_operation_name').addEventListener('change', toggleFields);
+    </script>
 </body>
 </html>
+
+

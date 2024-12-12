@@ -1,10 +1,12 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Sum
 from django.http import HttpResponseNotFound
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import FormView, ListView, CreateView, TemplateView
 
-from finance_site.models import Finance_site
+from finance_site.models import Finance_site, Category
 from finance_site.forms import AddOperationForm
 
 
@@ -24,6 +26,15 @@ class Operations(LoginRequiredMixin, ListView): # Класс который по
     template_name = 'finance/operations.html'
     context_object_name = 'posts'
 
+    def get_context_data(self, **kwargs):
+        # Получаем контекст из родительского метода
+        context = super().get_context_data(**kwargs)
+        # Добавляем request в контекст
+        context['request'] = self.request
+        context['expenses'] = Finance_site.objects.filter(operation_type=1, author__username=self.request.user.username).aggregate(Sum('amount'))
+        context['income'] = Finance_site.objects.filter(operation_type=0, author__username=self.request.user.username).aggregate(Sum('amount'))
+        return context
+
     def get_queryset(self):
         return Finance_site.objects.filter(author__username=self.request.user.username)
 
@@ -34,16 +45,23 @@ class graphics(LoginRequiredMixin, ListView):
 
 
 class AddPage(LoginRequiredMixin, CreateView): # Класс с формой для добавления операции
+    model = Category
     form_class = AddOperationForm
     template_name = 'finance/addpage.html'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('operations')
     extra_context = {'title': "Добавление операции"}
 
     def form_valid(self, form):
         w = form.save(commit=False)
+        print(self.request.POST)
+        if self.request.POST['cat1']:
+            w.cat = Category.objects.get(pk=self.request.POST['cat1'])
+        else:
+            w.cat = Category.objects.get(pk=self.request.POST['cat2'])
         w.author = self.request.user
         return super().form_valid(form)
 
 
 def page_not_found(request, exception): # Обработчик ошибки 404
     return HttpResponseNotFound("<h1>Страница не найдена</h1>")
+
