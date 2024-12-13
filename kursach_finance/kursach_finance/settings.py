@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 env = Env()
 env.read_env()
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = "b0$3c4#65)s(gsa###@t8kqncq^e6i7b85&(hrs)wcsro=$m6n"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -129,7 +129,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    BASE_DIR / 'static', # Указание нестандартного пути к статик файлам
+    BASE_DIR / 'finance_site/static',
+    BASE_DIR/'users/static'# Указание нестандартного пути к статик файлам
 ]
 
 # Default primary key field type

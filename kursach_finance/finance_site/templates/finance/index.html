@@ -2,22 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Hello world</title>
+    <title>Главная</title>
+	<link type="text/css" href="../../static/finance_site/css/style.css" rel="stylesheet">
 </head>
 <body>
-<h1>Добро пожаловать на сайт, для работы на нем зарегестрируйтесь</h1>
-{% if user.is_authenticated %}
-<!--	<li class="last">{{ user.username }} | <a href="{% url 'users:logout' %}">Выйти</a> </li>-->
-	<form id="logoutForm" method="post" action="{% url 'users:logout' %}">
-		{% csrf_token %}
-		<li class="last"> <a href="{% url 'users:profile' %}">{{user.username }}</a> | <a href="#" onclick="document.getElementById('logoutForm').submit(); return false;">Выйти</a></li>
-	</form>
-{% else %}
-
-	<li class="last"><a href="{% url 'users:login' %}">Войти</a> | <a href="{% url 'users:register' %}">Регистрация</a> </li>
-{% endif %}
+	<header class="container">
+		<img src="../../static/finance_site/images/Logo.svg" width="140px" height="110px" alt="">
+		<span class="finances">FINANCES</span>
+		<div class="login">
+			<ul>
+				<li class="btn"><a href="/users/login/">Войти</a></li>
+				<li class="btn"><a href="/users/register/">Зарегистрироваться</a></li>
 			</ul>
-			<div class="clear"></div>
 		</div>
+	</header>
+
+	<div class="hero container">
+		<div class="hero--info">
+			<h1>Удобный анализ финансов</h1>
+			<p>Отслеживание и контроль собственных трат в несколько кликов</p>
+		</div>
+		<img src="../../static/finance_site/images/OBJECTS.svg" width="500px" height ="300px">
+	</div>
+
+
 </body>
 </html>

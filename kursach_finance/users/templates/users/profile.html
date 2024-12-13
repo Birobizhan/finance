@@ -2,19 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Профиль</title>
+    <link type="text/css" href="../../static/users/css/profile.css" rel="stylesheet">
 </head>
 <body>
-<h1>Профиль</h1>
-<form method="post">
-    {% csrf_token %}
-    <div class="form-error">{{ form.non_field_errors }}</div>
-    {% for f in form %}
-    <p><label class="form-label" for="{{f.id_for_label}}">{{ f.label }}</label>{{ f }}</p>
-    <div class="form-error">{{ f.errors }}</div>
-    {% endfor %}
-    <p><button type="submit">Сохранить</button> </p>
-</form>
+    <header class="container">
+		<img src="../../static/finance_site/images/Logo.svg" width="140px" height="110px" alt="">
+		<span class="finances">FINANCES</span>
+		<div class="login">
+			<ul>
+                <li class="btn_active"><a href="#">Профиль</a></li>
+				<li class="btn"><a href="/addpage/">Добавить операцию</a></li>
+				<li class="btn"><a href="/operations/">Статистика</a></li>
+                <li class="btn"><a href="/users/logout/">Выход</a></li>
+			</ul>
+		</div>
+	</header>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-error">{{ form.non_field_errors }}</div>
+        {% for f in form %}
+        <p><label class="form-label" for="{{f.id_for_label}}">{{ f.label }}</label>{{ f }}</p>
+        <div class="form-error">{{ f.errors }}</div>
+        {% endfor %}
+        <p><button type="submit">Сохранить</button> </p>
+    </form>
 <h4>Ваши цели:</h4>
 </body>
 </html>

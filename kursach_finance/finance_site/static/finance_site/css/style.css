@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 400;
+    background: #F5F5F5;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+
+
+header {
+    background-color: #868585;
+    width: 1300px;
+    height: 120px;
+    display: flex;
+    align-items: flex-end;
+}
+
+header .finances {
+    text-transform: uppercase;
+    font-size: 42px;
+    font-weight: 800;
+    padding-bottom: 10px;
+    letter-spacing: 6px;
+}
+header .login {
+    float: right;
+    padding-bottom: 25px;
+    padding-left: 450px;
+}
+
+header ul {
+    list-style: none;
+    display: flex;
+    text-indent: 22px;
+}
+
+header ul li {
+    display: inline-block;
+}
+
+header ul li a {
+    color: #000;
+    border: 1px solid #000000;
+}
+
+header ul li.btn a {
+    background: #FE786D;
+    padding: 9px 17px;
+    border-radius: 25px;
+    transition: all 500ms ease;
+}
+
+header ul li.btn a:hover{
+    background: #f3574c;
+}
+
+.hero {
+    padding-bottom: 100px;
+    width: 1100px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.hero--info {
+    width: 397px;
+    padding-top: 130px;
+}
+
+.hero--info h1 {
+    font-size: 40px;
+    font-weight: 800;
+}
+
+.hero--info p {
+    font-weight: 400;
+    font-size: 24px;
+    margin: 30px 0;
+}
+
+.hero img {
+    position: absolute;
+    top: 50px;
+    right: 0;
+}
+
+
+
+
