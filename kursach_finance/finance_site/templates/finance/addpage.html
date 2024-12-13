@@ -1,9 +1,6 @@
+{% extends 'base.html' %}
 
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>{{title}}</title>
+{% block dop_info %}
     <link type="text/css" href="../../static/finance_site/css/addpage.css" rel="stylesheet">
     <script>
         function toggleFields() {
@@ -22,20 +19,8 @@
         }
         window.onload = toggleFields;
     </script>
-</head>
-<body>
-    <header class="container">
-		<img src="../../static/finance_site/images/Logo.svg" width="140px" height="110px" alt="">
-		<span class="finances">FINANCES</span>
-		<div class="login">
-			<ul>
-                <li class="btn"><a href="/users/profile/">Профиль</a></li>
-				<li class="btn_active"><a href="#">Добавить операцию</a></li>
-				<li class="btn"><a href="/operations/">Статистика</a></li>
-                <li class="btn"><a href="/users/logout/">Выход</a></li>
-			</ul>
-		</div>
-	</header>
+{% endblock %}
+{% block content %}
     <form action="" method="POST">
         {% csrf_token %}
         <div class="form-error">{{ for.non_field_errors }}</div>
@@ -64,7 +49,5 @@
     <script>
         document.getElementById('id_operation_name').addEventListener('change', toggleFields);
     </script>
-</body>
-</html>
-
+{% endblock %}
 

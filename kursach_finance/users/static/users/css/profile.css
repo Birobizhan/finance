@@ -22,7 +22,7 @@ img {
 
 header {
     background-color: #868585;
-    width: 1300px;
+    width: 1520px;
     height: 120px;
     display: flex;
     align-items: flex-end;
@@ -103,8 +103,3 @@ header ul li.btn_active a{
     top: 50px;
     right: 0;
 }
-
-
-
-
-

@@ -2,9 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{{title}}</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link type="text/css" href="../../static/finance_site/css/addpage.css" rel="stylesheet">
+
+	{% block dop_info %}
+	{% endblock %}
 </head>
 <body>
+    <header class="container">
+		<img src="../../static/finance_site/images/Logo.svg" width="140px" height="110px" alt="">
+		<span class="finances">FINANCES</span>
+		<div class="login">
+			<ul>
+                <li class="btn_active"><a href="#">Профиль</a></li>
+				<li class="btn"><a href="/addpage/">Добавить операцию</a></li>
+				<li class="btn"><a href="/dashboard/">Статистика</a></li>
+                <form id="logoutForm" method="post" action="{% url 'users:logout' %}">
+		            {% csrf_token %}
+                    <li class="btn"><a href="#" onclick="document.getElementById('logoutForm').submit(); return false;">Выйти</a></li>
+                </form>
 
+			</ul>
+		</div>
+	</header>
+{% block content %} {% endblock %}
 </body>
-</html>

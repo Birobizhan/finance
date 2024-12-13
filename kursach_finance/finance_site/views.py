@@ -38,10 +38,6 @@ class Operations(LoginRequiredMixin, ListView): # Класс который по
         return Finance_site.objects.filter(author__username=self.request.user.username)
 
 
-class graphics(LoginRequiredMixin, ListView):
-    """Страница на которой будут графики и диаграммы"""
-    template_name = 'finance/graphics.html'
-
 
 class AddPage(LoginRequiredMixin, CreateView): # Класс с формой для добавления операции
     model = Category
