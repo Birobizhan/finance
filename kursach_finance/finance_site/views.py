@@ -77,9 +77,7 @@ def create_chart(random_x):
     fig.update_layout(
         width=500,
         height=500,
-        # margin=dict(l=30,r=30,b=30,
-        #         t=30,pad=3
-        #         ),
+
     )
     # Сохранение графика в HTML
     graph_html = fig.to_html(full_html=False)
@@ -104,7 +102,7 @@ class Dashboard(ListView):
         context['chart1'] = chart1
         context['chart2'] = chart2
 
-        category_sums = Finance_site.objects.values('cat__name', 'cat__type').annotate(total_price=Sum('amount'))
+        category_sums = Finance_site.objects.filter(author__username=self.request.user.username).values('cat__name', 'cat__type').annotate(total_price=Sum('amount'))
         category = []
         for cat in category_sums:
             category.append([cat['cat__name'], cat['total_price'], cat['cat__type']])
