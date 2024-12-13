@@ -2,20 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Вход</title>
+    <link type="text/css" href="../../static/users/css/login.css" rel="stylesheet">
 </head>
 <body>
-<h1>Авторизация</h1>
+    <header class="container">
+        <a href="http://127.0.0.1:8000/"><img src="../../static/users/images/Logo.svg" width="140px" height="110px" alt=""></a>
+		<span class="finances"><a href="http://127.0.0.1:8000/">FINANCES</a></span>
+	</header>
+    <div class="hero--container">
+        <h1>Вход в FINANCES</h1>
+        <form method="post" class="form-container">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}"/>
+            <div class="form-error">{{ for.non_field_errors }}</div>
+            <div class="form-group">
+                <label class="form-label" for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
+                {{ form.username }}
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="{{ form.password.id_for_label }}">{{ form.password.label }}</label>
+                {{ form.password }}
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn-submit">Войти</button>
+            </div>
+        </form>
+    </div>
 
-<form method="post">
-    {% csrf_token %}
-    <input type="hidden" name="next" value="{{ next }}"/>
-    <div class="form-error">{{ for.non_field_errors }}</div>
-    {% for f in form %}
-    <p><label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}</label>{{ f }}</p>
-    <div class="form_error">{{ f.errors }}</div>
-    {% endfor %}
-    <p><button type="submit">Войти</button> </p>
-</form>
 </body>
 </html>

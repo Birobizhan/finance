@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>{{title}}</title>
+    <link type="text/css" href="../../static/finance_site/css/addpage.css" rel="stylesheet">
     <script>
         function toggleFields() {
             const operation_type = document.getElementById('id_operation_type').value;
@@ -23,31 +24,43 @@
     </script>
 </head>
 <body>
-<form action="" method="POST">
-    {% csrf_token %}
-    <div class="form-error">{{ for.non_field_errors }}</div>
-    {% for f in form %}
-        {% if f == form.cat1 %}
-    <p>Категории</p>
-            <div id="field1" style="display: block">
-            {{form.cat1}}
-            </div>
-    <div class="form_error">{{ f.errors }}</div>
-        {% elif f == form.cat2 %}
-            <div id="field2" style="display: block">
-            {{form.cat2}}
-            </div>
-    <div class="form_error">{{ f.errors }}</div>
-        {%else%}
-            <p><label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}</label>{{ f }}</p>
-            <div class="form_error">{{ f.errors }}</div>
-        {% endif %}
-    {% endfor %}
+    <header class="container">
+		<img src="../../static/finance_site/images/Logo.svg" width="140px" height="110px" alt="">
+		<span class="finances">FINANCES</span>
+		<div class="login">
+			<ul>
+                <li class="btn"><a href="/users/profile/">Профиль</a></li>
+				<li class="btn_active"><a href="#">Добавить операцию</a></li>
+				<li class="btn"><a href="/operations/">Статистика</a></li>
+                <li class="btn"><a href="/users/logout/">Выход</a></li>
+			</ul>
+		</div>
+	</header>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="form-error">{{ for.non_field_errors }}</div>
+        {% for f in form %}
+            {% if f == form.cat1 %}
+        <p>Категории</p>
+                <div id="field1" style="display: block">
+                {{form.cat1}}
+                </div>
+        <div class="form_error">{{ f.errors }}</div>
+            {% elif f == form.cat2 %}
+                <div id="field2" style="display: block">
+                {{form.cat2}}
+                </div>
+        <div class="form_error">{{ f.errors }}</div>
+            {%else%}
+                <p><label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}</label>{{ f }}</p>
+                <div class="form_error">{{ f.errors }}</div>
+            {% endif %}
+        {% endfor %}
 
 
 
-    <p><button type="submit">Отправить</button> </p>
-</form>
+        <p><button type="submit">Отправить</button> </p>
+    </form>
     <script>
         document.getElementById('id_operation_name').addEventListener('change', toggleFields);
     </script>
