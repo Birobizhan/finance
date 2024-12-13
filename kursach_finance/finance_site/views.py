@@ -74,6 +74,13 @@ def create_chart(random_x):
     fig = go.Figure(data=go.Pie(labels=cat, values=amount, textinfo='label+percent',
                               hoverinfo='label+value+text'))
 
+    fig.update_layout(
+        width=500,
+        height=500,
+        # margin=dict(l=30,r=30,b=30,
+        #         t=30,pad=3
+        #         ),
+    )
     # Сохранение графика в HTML
     graph_html = fig.to_html(full_html=False)
 
@@ -96,6 +103,17 @@ class Dashboard(ListView):
         chart2 = create_chart(random_x)
         context['chart1'] = chart1
         context['chart2'] = chart2
+
+        category_sums = Finance_site.objects.values('cat__name', 'cat__type').annotate(total_price=Sum('amount'))
+        category = []
+        for cat in category_sums:
+            category.append([cat['cat__name'], cat['total_price'], cat['cat__type']])
+        dia_income = [x[:2] for x in category if x[2] == False]
+        dia_expenses = [x[:2] for x in category if x[2] == True]
+        context['dia_income'] = dia_income
+        context['dia_expenses'] = dia_expenses
+        context['expenses'] = Finance_site.objects.filter(operation_type=1, author__username=self.request.user.username).aggregate(Sum('amount'))
+        context['income'] = Finance_site.objects.filter(operation_type=0,author__username=self.request.user.username).aggregate(Sum('amount'))
         return context
 
 

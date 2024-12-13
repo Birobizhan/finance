@@ -1,9 +1,31 @@
 {% extends 'base.html' %}
 
+{% block dop_info %}
+<style>
+        .container {
+            display: flex; /* Используем flexbox для выравнивания */
+            justify-content: center; /* Центрируем картинки */
+            align-items: center; /* Выравниваем по вертикали */
+        }
+        .container user-select-none svg-container {
+            margin: 10px; /* Отступы между картинками */
+            max-width: 100%; /* Ограничиваем ширину изображений */
+            height: auto; /* Сохраняем пропорции */
+        }
+    </style>
+{% endblock %}
 {% block content %}
-    <div style="text-align: center;">
-        <h1>Интерактивная диаграмма</h1>
+    <div class="container">
         {{ chart1|safe }}{{ chart2|safe }}
-
     </div>
+
+
+{% for i in dia_expenses %}
+    <p> {{i.0}}: {{i.1}} </p>
+{% endfor %}
+<br>
+{% for i in dia_income %}
+    <p> {{i.0}}: {{i.1}} </p>
+{% endfor %}
+
 {% endblock %}
