@@ -26,20 +26,14 @@ async def start_command(message: Message):
 
 @dp.message(Command(commands=['help']))
 async def help_command(message: Message):
-    await message.answer('Пока такой функции не добавили')
-
-
-@dp.message(F.text.lower().in_(['menu', 'меню', '/menu']))
-async def menu(message: Message):
-    button1 = KeyboardButton(text='Пока что пусто')
-    button2 = KeyboardButton(text='И тут пусто')
-    keyboard = ReplyKeyboardMarkup(keyboard=[[button1, button2]])
-    await message.answer(text='Вот меню', reply_markup=keyboard)
+    await message.answer(
+        'Перейди в приложение которое я присылал ранее, зарегистрируйся в нем и ты сможешь добавлять, удалять, '
+        'изменять свои траты, а так же тебе будет представлена небольшая визуализация!')
 
 
 @dp.message()
 async def other_message(message: Message):
-    await message.answer('Я таких команд не знаю')
+    await message.answer('Я таких команд не знаю, скорее переходи в приложение и регистрируйся!')
 
 
 if __name__ == "__main__":

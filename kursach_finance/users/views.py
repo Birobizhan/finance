@@ -38,7 +38,6 @@ class ProfileUser(LoginRequiredMixin, ListView,):
         # Получаем контекст из родительского метода
         context = super().get_context_data(**kwargs)
         # Добавляем request в контекст
-        context['request'] = self.request
         context['expenses'] = Finance_site.objects.filter(operation_type=1, author__username=self.request.user.username).aggregate(Sum('amount'))
         context['income'] = Finance_site.objects.filter(operation_type=0, author__username=self.request.user.username).aggregate(Sum('amount'))
         return context

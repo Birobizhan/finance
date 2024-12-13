@@ -3,7 +3,7 @@ from django.db.models import Sum
 from django.http import HttpResponseNotFound
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, TemplateView
+from django.views.generic import ListView, CreateView, TemplateView, UpdateView, DeleteView
 import plotly.graph_objects as go
 from django.shortcuts import render
 from finance_site.models import Finance_site, Category
@@ -21,29 +21,11 @@ class about(TemplateView): # Класс который грузит страни
     template_name = 'finance/about.html'
 
 
-class Operations(LoginRequiredMixin, ListView): # Класс который показывает все операции пользователя
-    template_name = 'finance/operations.html'
-    context_object_name = 'posts'
-
-    def get_context_data(self, **kwargs):
-        # Получаем контекст из родительского метода
-        context = super().get_context_data(**kwargs)
-        # Добавляем request в контекст
-        context['request'] = self.request
-        context['expenses'] = Finance_site.objects.filter(operation_type=1, author__username=self.request.user.username).aggregate(Sum('amount'))
-        context['income'] = Finance_site.objects.filter(operation_type=0, author__username=self.request.user.username).aggregate(Sum('amount'))
-        return context
-
-    def get_queryset(self):
-        return Finance_site.objects.filter(author__username=self.request.user.username)
-
-
-
 class AddPage(LoginRequiredMixin, CreateView): # Класс с формой для добавления операции
     model = Category
     form_class = AddOperationForm
     template_name = 'finance/addpage.html'
-    success_url = reverse_lazy('operations')
+    success_url = reverse_lazy('users:profile')
     extra_context = {'title': "Добавление операции"}
 
     def form_valid(self, form):
@@ -56,6 +38,34 @@ class AddPage(LoginRequiredMixin, CreateView): # Класс с формой дл
         w.author = self.request.user
         return super().form_valid(form)
 
+
+class DeletePage(DeleteView):
+    model = Finance_site
+    success_url = reverse_lazy('users:profile')
+    template_name = 'finance/finance_site_confirm_delete.html'
+    context_object_name = 'post'
+
+    def form_valid(self, form):
+        return super(DeletePage, self).form_valid(form)
+
+
+class UpdatePage(LoginRequiredMixin, UpdateView):
+    model = Finance_site
+    form_class = AddOperationForm
+
+    template_name = 'finance/addpage.html'
+    success_url = reverse_lazy('users:profile')
+    extra_context = {'title': "Изменение операции"}
+
+    def form_valid(self, form):
+        w = form.save(commit=False)
+        print(self.request.POST)
+        if self.request.POST['cat1']:
+            w.cat = Category.objects.get(pk=self.request.POST['cat1'])
+        else:
+            w.cat = Category.objects.get(pk=self.request.POST['cat2'])
+        w.author = self.request.user
+        return super().form_valid(form)
 
 
 def create_chart(random_x):

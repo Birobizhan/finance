@@ -13,11 +13,14 @@
 <ul class="list-articles">
 	{% for p in posts %}
 	<li><div class="article-panel">
+		<h4>Название операции: {{p.operation_name}}	|<a href="http://127.0.0.1:3000/edit/{{p.pk}}">Изменить</a> | <a href="http://127.0.0.1:3000/delete/{{p.pk}}">Удалить</a></h4>
 		<p class="first">Категория: {{p.cat}}</p>
-		<p class="last">Дата: {{p.time_create|date:"d.m.Y H:i:s"}}</p>
-		<p>Название операции: {{p.operation_name}}</p>
 		<p>Сумма операции: {{p.amount}}</p>
+		{% if p.notes %}
 		<p>Заметки: {{p.notes}}</p>
+		{% endif %}
+		<p class="last">Дата: {{p.time_create|date:"d.m.Y H:i:s"}}</p>
+
 		<br>
 
 	</div>

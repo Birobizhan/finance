@@ -15,8 +15,13 @@
 		<span class="finances">FINANCES</span>
 		<div class="login">
 			<ul>
-                <li class="btn_active"><a href="#">Профиль</a></li>
-				<li class="btn"><a href="/addpage/">Добавить операцию</a></li>
+				{% if request.path == '/users/profile/' %}
+                <li class="btn_active"><a href="/users/profile">Профиль</a></li>
+				{% else %}
+				<li class="btn"><a href="/users/profile">Профиль</a></li>
+				{% endif %}
+
+				<li class="btn"><a href="/addpage/">Добавление операции</a></li>
 				<li class="btn"><a href="/dashboard/">Статистика</a></li>
                 <form id="logoutForm" method="post" action="{% url 'users:logout' %}">
 		            {% csrf_token %}
@@ -26,5 +31,7 @@
 			</ul>
 		</div>
 	</header>
+
 {% block content %} {% endblock %}
+
 </body>
