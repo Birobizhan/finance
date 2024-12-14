@@ -31,7 +31,7 @@ class ProfileUser(LoginRequiredMixin, ListView,):
     model = get_user_model()
     form_class = ProfileUserForm
     template_name = 'users/icons.html'
-    extra_context = {"title": 'Профиль пользователя'}
+    extra_context = {"title": 'Профиль'}
     context_object_name = 'posts'
 
     def get_context_data(self, **kwargs):
@@ -48,5 +48,3 @@ class ProfileUser(LoginRequiredMixin, ListView,):
 
     def get_object(self, queryset=None):
         return self.request.user
-
-

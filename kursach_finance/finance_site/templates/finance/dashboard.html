@@ -8,7 +8,7 @@
         <div class="chart-container">
             {{ chart1|safe }}
             <div class="expenses-list">
-                <h3>Траты по категориям:</h3> <!-- Заголовок перед списком расходов -->
+                <h3>Траты по категориям:</h3>
                 {% for i in dia_expenses %}
                     <p>{% block icons_ex %}
                     {% endblock %}{{ i.0 }}: {{ i.1 }}</p>
@@ -18,7 +18,7 @@
         <div class="chart-container">
             {{ chart2|safe }}
             <div class="income-list">
-                <h3>Доходы по категориям:</h3> <!-- Заголовок перед списком доходов -->
+                <h3>Доходы по категориям:</h3>
                 {% for i in dia_income %}
 
                     <p>

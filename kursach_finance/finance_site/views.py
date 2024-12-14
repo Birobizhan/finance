@@ -1,11 +1,9 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Sum
 from django.http import HttpResponseNotFound
-from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, TemplateView, UpdateView, DeleteView
 import plotly.graph_objects as go
-from django.shortcuts import render
 from finance_site.models import Finance_site, Category
 from finance_site.forms import AddOperationForm
 
@@ -13,15 +11,10 @@ from finance_site.forms import AddOperationForm
 # Create your views here.
 
 class Home(TemplateView):
-    """Класс-представление который просто грузит странчику добро пожаловать и ссылкой на регистрацию"""
     template_name = 'finance/index.html'
 
 
-class about(TemplateView): # Класс который грузит страничку На которой в дальнейшем будет Faq и о нас
-    template_name = 'finance/about.html'
-
-
-class AddPage(LoginRequiredMixin, CreateView): # Класс с формой для добавления операции
+class AddPage(LoginRequiredMixin, CreateView):
     model = Category
     form_class = AddOperationForm
     template_name = 'finance/addpage.html'
@@ -39,11 +32,12 @@ class AddPage(LoginRequiredMixin, CreateView): # Класс с формой дл
         return super().form_valid(form)
 
 
-class DeletePage(DeleteView):
+class DeletePage(LoginRequiredMixin, DeleteView):
     model = Finance_site
     success_url = reverse_lazy('users:profile')
     template_name = 'finance/finance_site_confirm_delete.html'
     context_object_name = 'post'
+    extra_context = {'title': 'Удаление операции'}
 
     def form_valid(self, form):
         return super(DeletePage, self).form_valid(form)
@@ -77,18 +71,17 @@ def create_chart(random_x):
     fig.update_layout(
         width=500,
         height=500,
-
     )
-    # Сохранение графика в HTML
     graph_html = fig.to_html(full_html=False)
 
     return graph_html
 
 
-class Dashboard(ListView):
+class Dashboard(LoginRequiredMixin, ListView):
     model = Finance_site
     template_name = 'finance/icons1.html'
     context_object_name = 'graphics'
+    extra_context = {'title': 'Статистика'}
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -115,6 +108,5 @@ class Dashboard(ListView):
         return context
 
 
-def page_not_found(request, exception): # Обработчик ошибки 404
-    return HttpResponseNotFound("<h1>Страница не найдена</h1>")
-
+def page_not_found(request, exception):
+    return HttpResponseNotFound("<h1>Страница не найдена</h1><a href='/'>На главную</a>")

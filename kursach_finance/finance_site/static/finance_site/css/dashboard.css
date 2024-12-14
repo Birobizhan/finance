@@ -112,23 +112,20 @@ header ul li.btn_active a{
 }
 .hero--container {
     display: flex;
-    justify-content: space-between; /* Распределение пространства между элементами */
-    align-items: flex-start; /* Выравнивание по верхнему краю */
-    margin-top: 20px; /* Отступ сверху для контейнера с диаграммами */
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 20px;
 }
 
 .chart-container {
-    text-align: center; /* Центрирование текста внутри контейнера */
+    text-align: center;
 }
 
 .expenses-list, .income-list {
-    margin-top: 10px; /* Отступ сверху для списков */
-    border-radius: 8px; /* Закругление углов */
-    padding: 10px; /* Отступ внутри блока */
+    margin-top: 10px;
+    border-radius: 8px;
+    padding: 10px;
 }
-
-
-
 
 .footer-emails {
     margin-top: 5px;

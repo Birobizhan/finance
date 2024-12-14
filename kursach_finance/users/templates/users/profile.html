@@ -30,8 +30,8 @@
 
                     <h4>
                         Название операции: {{ p.operation_name }}
-                         <a href="http://127.0.0.1:3000/edit/{{ p.pk }}"><i class="bi bi-pencil-square"></i></a>
-                         <a href="http://127.0.0.1:3000/delete/{{ p.pk }}"><i class="bi bi-trash"></i></a>
+                         <a href="/edit/{{ p.pk }}/"><i class="bi bi-pencil-square"></i></a>
+                         <a href="/delete/{{ p.pk }}/"><i class="bi bi-trash"></i></a>
                     </h4>
                     <p>Категория: {{p.cat}}</p>
                     {% if p.operation_type == '0' %}

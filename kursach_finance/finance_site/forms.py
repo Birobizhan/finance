@@ -1,10 +1,4 @@
 from django import forms
-from django.contrib.auth import get_user_model
-from django.contrib.auth.middleware import get_user
-from django.core.exceptions import ValidationError
-from django.core.validators import MinLengthValidator, MaxLengthValidator
-from django.utils.deconstruct import deconstructible
-
 from finance_site.models import Finance_site, Category
 
 
@@ -26,7 +20,6 @@ class AddOperationForm(forms.ModelForm):
         field2_value = cleaned_data.get('cat2')
         print(field2_value, field1_value)
 
-        # Устанавливаем значение field1 в field2
         if field1_value:
             cleaned_data['cat'] = field1_value
         else:

@@ -10,8 +10,8 @@ body {
     background: #F5F5F5;
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Задает минимальную высоту для body */
-    margin: 0; /* Убирает отступы */
+    min-height: 100vh;
+    margin: 0;
 }
 
 a {
@@ -130,7 +130,7 @@ ul {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px 0; /* Добавляем отступы сверху и снизу */
+    padding: 10px 0;
 }
 .footer {
     background-color: #868585;
@@ -138,61 +138,61 @@ ul {
     font-size: 16px;
     opacity: 80%;
     color: #000;
-    padding: 10px 0; /* Уменьшено отступы */
+    padding: 10px 0;
     text-align: center;
-    margin-top: auto; /* Отталкивает футер вниз */
+    margin-top: auto;
 }
 
 .footer-content {
     max-width: 1020px;
     margin: 0 auto;
     display: flex;
-    align-items: center; /* Центрирование по вертикали */
-    justify-content: center; /* Центрирование по горизонтали */
+    align-items: center;
+    justify-content: center;
 }
 
 .footer-finances {
-    margin-right: 10px; /* Отступ между текстом и логотипом */
+    margin-right: 10px;
 }
 
 .footer-links {
-    margin: 5px 0; /* Уменьшено отступы */
+    margin: 5px 0;
 }
 
 .footer-links a {
     color: #000;
-    margin: 0 5px; /* Уменьшено отступы между ссылками */
+    margin: 0 5px;
 }
 
 .footer-emails {
-    margin-top: 5px; /* Уменьшено отступы */
+    margin-top: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .footer-emails span {
-    margin: 2px 0; /* Уменьшено отступы между строками */
+    margin: 2px 0;
 }
 .operations-container {
-    display: flex; /* Используем flexbox для расположения колонок */
-    justify-content: space-between; /* Распределяем пространство между колонками */
-    margin-top: 20px; /* Отступ сверху */
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
 }
 
 .income-operations, .outcome-operations {
-    flex: 1; /* Каждая колонка занимает равное пространство */
-    margin: 0 10px; /* Отступы между колонками */
+    flex: 1;
+    margin: 0 10px;
 }
 
 .operation-block {
-    background-color: #f0f0f0; /* Серый фон */
-    padding: 15px; /* Отступы */
+    background-color: #f0f0f0;
+    padding: 15px;
     font-size: 20px;
-    border-radius: 8px; /* Скругленные углы */
-    margin: 10px 0; /* Отступы между операциями */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Тень для эффекта поднятия */
-    display: flex; /* Используем Flexbox */
+    border-radius: 8px;
+    margin: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
     align-items: left;
 }
 

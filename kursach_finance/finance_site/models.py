@@ -1,10 +1,4 @@
-from django.contrib.auth import get_user_model
 from django.db import models
-from django.urls import reverse
-from django.template.defaultfilters import slugify
-
-
-# Create your models here.
 
 
 class Finance_site(models.Model):
@@ -20,7 +14,6 @@ class Finance_site(models.Model):
     amount = models.IntegerField(verbose_name='Сумма')
     author = models.ForeignKey('auth.user', on_delete=models.PROTECT, verbose_name='Автор', editable=False)
     time_create = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
-    # time_update = models.DateTimeField(auto_now=True, verbose_name='Время изменения')
 
     objects = models.Manager()
 
@@ -38,7 +31,7 @@ class Finance_site(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=100, db_index=True, verbose_name='Категория операции')
-    type = models.BooleanField(verbose_name='Тип операции', default=1) # Если 1, то Траты, если 0, то доходы
+    type = models.BooleanField(verbose_name='Тип операции', default=1)
 
     class Meta:
         verbose_name = 'Категории'
