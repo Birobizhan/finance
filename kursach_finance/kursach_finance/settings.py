@@ -27,7 +27,7 @@ env.read_env()
 SECRET_KEY = "b0$3c4#65)s(gsa###@t8kqncq^e6i7b85&(hrs)wcsro=$m6n"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
