@@ -18,7 +18,6 @@ class AddOperationForm(forms.ModelForm):
         cleaned_data = super().clean()
         field1_value = cleaned_data.get('cat1')
         field2_value = cleaned_data.get('cat2')
-        print(field2_value, field1_value)
 
         if field1_value:
             cleaned_data['cat'] = field1_value

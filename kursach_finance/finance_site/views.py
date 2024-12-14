@@ -6,16 +6,16 @@ from django.views.generic import ListView, CreateView, TemplateView, UpdateView,
 import plotly.graph_objects as go
 from finance_site.models import Finance_site, Category
 from finance_site.forms import AddOperationForm
+from django.http import HttpResponseForbidden
 
 
 # Create your views here.
-
 class Home(TemplateView):
     template_name = 'finance/index.html'
 
 
 class AddPage(LoginRequiredMixin, CreateView):
-    model = Category
+    model = Finance_site
     form_class = AddOperationForm
     template_name = 'finance/addpage.html'
     success_url = reverse_lazy('users:profile')
@@ -23,7 +23,6 @@ class AddPage(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         w = form.save(commit=False)
-        print(self.request.POST)
         if self.request.POST['cat1']:
             w.cat = Category.objects.get(pk=self.request.POST['cat1'])
         else:
@@ -41,6 +40,15 @@ class DeletePage(LoginRequiredMixin, DeleteView):
 
     def form_valid(self, form):
         return super(DeletePage, self).form_valid(form)
+
+    def dispatch(self, request, *args, **kwargs):
+        obj = self.get_object()
+        if obj.author != request.user:
+            return self.handle_no_permission()
+        return super().dispatch(request, *args, **kwargs)
+
+    def handle_no_permission(self):
+        return HttpResponseForbidden("У вас нет прав для удаления этого объекта.")
 
 
 class UpdatePage(LoginRequiredMixin, UpdateView):
@@ -61,6 +69,14 @@ class UpdatePage(LoginRequiredMixin, UpdateView):
         w.author = self.request.user
         return super().form_valid(form)
 
+    def dispatch(self, request, *args, **kwargs):
+        obj = self.get_object()
+        if obj.author != request.user:
+            return self.handle_no_permission()
+        return super().dispatch(request, *args, **kwargs)
+
+    def handle_no_permission(self):
+        return HttpResponseForbidden("У вас нет прав для изменения этого объекта.")
 
 def create_chart(random_x):
     amount = [x[1] for x in random_x]
@@ -103,8 +119,6 @@ class Dashboard(LoginRequiredMixin, ListView):
         dia_expenses = [x[:2] for x in category if x[2] == True]
         context['dia_income'] = dia_income
         context['dia_expenses'] = dia_expenses
-        context['expenses'] = Finance_site.objects.filter(operation_type=1, author__username=self.request.user.username).aggregate(Sum('amount'))
-        context['income'] = Finance_site.objects.filter(operation_type=0,author__username=self.request.user.username).aggregate(Sum('amount'))
         return context
 
 

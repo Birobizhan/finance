@@ -1,15 +1,11 @@
-from django.contrib.auth import authenticate, login, logout, get_user_model
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.db.models import Sum
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
-from django.urls import reverse, reverse_lazy
-from django.views.generic import CreateView, UpdateView, ListView
-
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, ListView
 from finance_site.models import Finance_site
-from users.forms import LoginUserForm, RegisterUserForm, ProfileUserForm
+from users.forms import LoginUserForm, RegisterUserForm
 
 
 # Create your views here.
@@ -27,9 +23,8 @@ class RegisterUser(CreateView):
     success_url = reverse_lazy('users:login')
 
 
-class ProfileUser(LoginRequiredMixin, ListView,):
+class ProfileUser(LoginRequiredMixin, ListView):
     model = get_user_model()
-    form_class = ProfileUserForm
     template_name = 'users/icons.html'
     extra_context = {"title": 'Профиль'}
     context_object_name = 'posts'
@@ -43,8 +38,4 @@ class ProfileUser(LoginRequiredMixin, ListView,):
     def get_queryset(self):
         return Finance_site.objects.filter(author__username=self.request.user.username)
 
-    def get_success_url(self):
-        return reverse_lazy('users:profile', args=[self.request.user.pk])
 
-    def get_object(self, queryset=None):
-        return self.request.user
