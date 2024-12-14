@@ -188,11 +188,23 @@ ul {
 .operation-block {
     background-color: #f0f0f0; /* Серый фон */
     padding: 15px; /* Отступы */
+    font-size: 20px;
     border-radius: 8px; /* Скругленные углы */
     margin: 10px 0; /* Отступы между операциями */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Тень для эффекта поднятия */
+    display: flex; /* Используем Flexbox */
+    align-items: left;
 }
 
-
-
-
+.inic{
+    color: #4DAB57;
+}
+.expen{
+    color: #D57B7B;
+}
+.cart{
+    font-size: 70px;
+}
+.article-panel{
+    margin-left: 30px;
+}

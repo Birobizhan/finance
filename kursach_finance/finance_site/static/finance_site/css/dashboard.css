@@ -123,7 +123,6 @@ header ul li.btn_active a{
 
 .expenses-list, .income-list {
     margin-top: 10px; /* Отступ сверху для списков */
-    background-color: #e7e7e7; /* Серый фон */
     border-radius: 8px; /* Закругление углов */
     padding: 10px; /* Отступ внутри блока */
 }

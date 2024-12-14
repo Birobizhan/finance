@@ -1,0 +1,47 @@
+{% extends 'finance/dashboard.html' %}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+
+
+{% block icons_ex %}
+{% if i.0 == 'Супермаркеты' %}
+<i class="bi bi-cart"></i>
+{% elif i.0 == "Одежда" %}
+<i class="bi bi-person-standing"></i>
+{% elif i.0 == "Рестораны" %}
+<i class="bi bi-egg-fried"></i>
+{% elif i.0 == "Развлечения" %}
+<i class="bi bi-emoji-smile"></i>
+{% elif i.0 == "Образование" %}
+<i class="bi bi-book"></i>
+{% elif i.0 == "Аптеки" %}
+<i class="bi bi-heart"></i>
+{% elif i.0 == "Транспорт" %}
+<i class="bi bi-bus-front"></i>
+{% elif i.0 == "Коммуналка" %}
+<i class="bi bi-droplet"></i>
+{% elif i.0 == "Жилье" %}
+<i class="bi bi-building"></i>
+{% elif i.0 == "Остальное" %}
+<i class="bi bi-archive"></i>
+{% endif %}
+{% endblock %}
+
+{% block icons_in %}
+{% if i.0 == 'Зарплата' %}
+<i class="bi bi-credit-card"></i>
+{% elif i.0 == 'Пенсия' %}
+<i class="bi bi-coin"></i>
+{% elif i.0 == "Пособие" %}
+<i class="bi bi-bank"></i>
+{% elif i.0 == "Стипендия" %}
+<i class="bi bi-cash-coin"></i>
+{% elif i.0 == "Другое" %}
+<i class="bi bi-archive"></i>
+{% elif i.0 == "Дивиденды" %}
+<i class="bi bi-piggy-bank"></i>
+{% elif i.0 == 'Инвестиции' %}
+<i class="bi bi-bank2"></i>
+{% endif %}
+{% endblock %}

@@ -10,7 +10,8 @@
             <div class="expenses-list">
                 <h3>Траты по категориям:</h3> <!-- Заголовок перед списком расходов -->
                 {% for i in dia_expenses %}
-                    <p>{{ i.0 }}: {{ i.1 }}</p>
+                    <p>{% block icons_ex %}
+                    {% endblock %}{{ i.0 }}: {{ i.1 }}</p>
                 {% endfor %}
             </div>
         </div>
@@ -19,7 +20,10 @@
             <div class="income-list">
                 <h3>Доходы по категориям:</h3> <!-- Заголовок перед списком доходов -->
                 {% for i in dia_income %}
-                    <p>{{ i.0 }}: {{ i.1 }}</p>
+
+                    <p>
+                    {% block icons_in %}
+                    {% endblock %} {{ i.0 }}: {{ i.1 }}</p>
                 {% endfor %}
             </div>
         </div>

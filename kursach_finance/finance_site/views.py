@@ -87,7 +87,7 @@ def create_chart(random_x):
 
 class Dashboard(ListView):
     model = Finance_site
-    template_name = 'finance/dashboard.html'
+    template_name = 'finance/icons1.html'
     context_object_name = 'graphics'
 
     def get_context_data(self, **kwargs):

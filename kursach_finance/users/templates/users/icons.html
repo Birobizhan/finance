@@ -1,0 +1,42 @@
+{% extends 'users/profile.html' %}
+
+{% block icons %}
+{% if p.cat_id == 2 %}
+<i class="bi bi-cart"></i>
+{% elif p.cat_id == 1 %}
+<i class="bi bi-credit-card"></i>
+{% elif p.cat_id == 3 %}
+<i class="bi bi-coin"></i>
+{% elif p.cat_id == 4 %}
+<i class="bi bi-person-standing"></i>
+{% elif p.cat_id == 5 %}
+<i class="bi bi-bank"></i>
+{% elif p.cat_id == 6 %}
+<i class="bi bi-cash-coin"></i>
+{% elif p.cat_id == 7 %}
+<i class="bi bi-archive"></i>
+{% elif p.cat_id == 8 %}
+<i class="bi bi-piggy-bank"></i>
+{% elif p.cat_id == 9 %}
+<i class="bi bi-bank2"></i>
+{% elif p.cat_id == 10 %}
+<i class="bi bi-egg-fried"></i>
+{% elif p.cat_id == 11 %}
+<i class="bi bi-emoji-smile"></i>
+{% elif p.cat_id == 12 %}
+<i class="bi bi-book"></i>
+{% elif p.cat_id == 13 %}
+<i class="bi bi-heart"></i>
+{% elif p.cat_id == 14 %}
+<i class="bi bi-bus-front"></i>
+{% elif p.cat_id == 15 %}
+<i class="bi bi-droplet"></i>
+{% elif p.cat_id == 16 %}
+<i class="bi bi-building"></i>
+{% elif p.cat_id == 17 %}
+<i class="bi bi-archive"></i>
+
+
+
+{% endif %}
+{% endblock %}

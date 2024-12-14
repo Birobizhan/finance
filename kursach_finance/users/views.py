@@ -30,7 +30,7 @@ class RegisterUser(CreateView):
 class ProfileUser(LoginRequiredMixin, ListView,):
     model = get_user_model()
     form_class = ProfileUserForm
-    template_name = 'users/profile.html'
+    template_name = 'users/icons.html'
     extra_context = {"title": 'Профиль пользователя'}
     context_object_name = 'posts'
 

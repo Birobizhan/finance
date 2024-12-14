@@ -17,25 +17,38 @@
     </ul>
     <hr>
 
-    <h3>Все операции</h3>
+    <h1>Все операции</h1>
     <ul class="list-articles">
         {% for p in posts %}
         <li>
             <div class="operation-block">
+                <div class="cart">
+                    {% block icons %}
+                    {% endblock %}
+                    </div>
                 <div class="article-panel">
+
                     <h4>
                         Название операции: {{ p.operation_name }}
-                        | <a href="http://127.0.0.1:3000/edit/{{ p.pk }}">Изменить</a>
-                        | <a href="http://127.0.0.1:3000/delete/{{ p.pk }}">Удалить</a>
+                         <a href="http://127.0.0.1:3000/edit/{{ p.pk }}"><i class="bi bi-pencil-square"></i></a>
+                         <a href="http://127.0.0.1:3000/delete/{{ p.pk }}"><i class="bi bi-trash"></i></a>
                     </h4>
-                    <p>Сумма операции: {{ p.amount }}</p>
+                    <p>Категория: {{p.cat}}</p>
+                    {% if p.operation_type == '0' %}
+                    <div class="inic">
+                        <p>Сумма операции: {{ p.amount }}</p>
+                    </div>
+                    {% else %}
+                    <div class="expen">
+                        <p>Сумма операции: {{p.amount}}</p>
+                    </div>
+                    {% endif %}
                     {% if p.notes %}
                     <p>Заметки: {{ p.notes }}</p>
                     {% endif %}
                     <p class="last">Дата: {{ p.time_create|date:"d.m.Y H:i:s" }}</p>
                     <br>
                 </div>
-                <h2>{{ p.title }}</h2>
                 {% autoescape off %}
                 <div class="operation-content">{{ p.content|linebreaks|truncatewords:40 }}</div>
                 {% endautoescape %}
