@@ -130,7 +130,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'finance_site/static',
-    BASE_DIR/'users/static'# Указание нестандартного пути к статик файлам
+    BASE_DIR/'users/static',
+    BASE_DIR/'static' # Указание нестандартного пути к статик файлам
 ]
 
 # Default primary key field type

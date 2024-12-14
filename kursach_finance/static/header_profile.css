@@ -4,6 +4,9 @@
     margin: 0;
     padding: 0;
 }
+html, body {
+    height: 100%;
+}
 body {
     font-family: 'Ubuntu', sans-serif;
     font-weight: 400;
@@ -22,8 +25,8 @@ img {
 
 header {
     background-color: #868585;
-    width: 1520px;
-    height: 120px;
+    width: 100%;
+    height: 15%;
     display: flex;
     align-items: flex-end;
 }
@@ -38,7 +41,8 @@ header .finances {
 header .login {
     float: right;
     padding-bottom: 25px;
-    padding-left: 450px;
+    padding-left: 260px;
+    font-size: 15px;
 }
 
 header ul {
@@ -67,35 +71,9 @@ header ul li.btn a:hover{
     background: #f3574c;
 }
 
-.hero {
-    padding-bottom: 100px;
-    width: 1100px;
-    margin: 0 auto;
-    position: relative;
+header ul li.btn_active a{
+    background: #f3574c;
+    padding: 9px 17px;
+    border-radius: 25px;
+    transition: all 500ms ease;
 }
-
-.hero--info {
-    width: 397px;
-    padding-top: 130px;
-}
-
-.hero--info h1 {
-    font-size: 40px;
-    font-weight: 800;
-}
-
-.hero--info p {
-    font-weight: 400;
-    font-size: 24px;
-    margin: 30px 0;
-}
-
-.hero img {
-    position: absolute;
-    top: 50px;
-    right: 0;
-}
-
-
-
-
