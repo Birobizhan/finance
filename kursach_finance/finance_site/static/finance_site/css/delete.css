@@ -79,63 +79,40 @@ header ul li.btn_active a{
     border-radius: 25px;
     transition: all 500ms ease;
 }
-
-
-.hero--container {
-    background-color: #d9d9d9;
-    border-radius: 15px;
-    width: 430px;
-    padding: 30px;
-    text-align: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.hero--container h1 {
-    margin-bottom: 20px;
-}
-
-.form-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    font-weight: 600;
-}
-
-.form-group {
-    margin-bottom: 10px;
-    width: 100%;
-}
-
-.form-label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.form-container textarea {
-    resize: none;
-    width: 100%;
-    height: 80px;
-}
-
-.btn-submit {
-    margin-top: 10px;
-    width: 100%;
-    padding: 10px;
-    background-color: #FE7C6F;
-    color: black;
-    border: 1px solid #000;
-    border-radius: 19px;
-    font-size: 16px;
-    font-weight: 600;
-}
-
-.btn-submit:hover {
-    background-color: #f3574c;
-}
-.footer {
+.wrapper {
+      margin-top: 5%;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: center;
+  }
+  h1 {
+      color: #000;
+  }
+  p {
+      margin: 20px 0;
+  }
+  .tut {
+      background-color: #f3574c;
+      color: black;
+      border: 1px solid #000;
+      border-radius: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 16px;
+  }
+  .tut:hover {
+      background-color: #da2b1e;
+  }
+  .tuta {
+      text-decoration: none;
+      color: #ee6f68;
+      font-weight: bold;
+  }
+  .tuta:hover {
+      text-decoration: underline;
+  }
+  .footer {
     width: 100%;
     background-color: #868585;
     font-weight: 500;

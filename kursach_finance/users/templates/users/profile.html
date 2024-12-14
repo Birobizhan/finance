@@ -1,35 +1,47 @@
 {% extends 'base.html' %}
 {% block dop_info %}
-	<link type="text/css" href="../../static/users/css/profile.css" rel="stylesheet">
+    <link type="text/css" href="../../static/users/css/profile.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 {% endblock %}
 
 {% block content %}
-<h4>Доходы: {{income.amount__sum}}</h4>
-<h4>Расходы: {{expenses.amount__sum}}</h4>
-	<br>
-<h4>Ваши цели:</h4>
-<br><br>
+<div class="wrapper">
+    <div class="user">
+        <span class="username">{{ user.username }}</span>
+        <img class="useravatar" src="../../static/users/images/profile.svg" width="300px" height="100px" alt="">
+    </div>
+    <hr>
+    <ul class="boxes">
+        <li class="income">Ваши доходы <i class="bi bi-arrow-up-circle"></i> <p>{{ income.amount__sum }}</p></li>
+        <li class="outcome">Ваши расходы <i class="bi bi-arrow-down-circle"></i> <p>{{ expenses.amount__sum }}</p></li>
+    </ul>
+    <hr>
 
-<ul class="list-articles">
-	{% for p in posts %}
-	<li><div class="article-panel">
-		<h4>Название операции: {{p.operation_name}}	|<a href="http://127.0.0.1:3000/edit/{{p.pk}}">Изменить</a> | <a href="http://127.0.0.1:3000/delete/{{p.pk}}">Удалить</a></h4>
-		<p class="first">Категория: {{p.cat}}</p>
-		<p>Сумма операции: {{p.amount}}</p>
-		{% if p.notes %}
-		<p>Заметки: {{p.notes}}</p>
-		{% endif %}
-		<p class="last">Дата: {{p.time_create|date:"d.m.Y H:i:s"}}</p>
-
-		<br>
-
-	</div>
-			<h2>{{p.title}}</h2>
-    {% autoescape off %}
-	{{p.content|linebreaks|truncatewords:40}}
-    {% endautoescape %}
-
-			</li>
-	{% endfor %}
-</ul>
+    <h3>Все операции</h3>
+    <ul class="list-articles">
+        {% for p in posts %}
+        <li>
+            <div class="operation-block">
+                <div class="article-panel">
+                    <h4>
+                        Название операции: {{ p.operation_name }}
+                        | <a href="http://127.0.0.1:3000/edit/{{ p.pk }}">Изменить</a>
+                        | <a href="http://127.0.0.1:3000/delete/{{ p.pk }}">Удалить</a>
+                    </h4>
+                    <p>Сумма операции: {{ p.amount }}</p>
+                    {% if p.notes %}
+                    <p>Заметки: {{ p.notes }}</p>
+                    {% endif %}
+                    <p class="last">Дата: {{ p.time_create|date:"d.m.Y H:i:s" }}</p>
+                    <br>
+                </div>
+                <h2>{{ p.title }}</h2>
+                {% autoescape off %}
+                <div class="operation-content">{{ p.content|linebreaks|truncatewords:40 }}</div>
+                {% endautoescape %}
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
 {% endblock %}

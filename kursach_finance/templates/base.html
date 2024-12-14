@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>{{title}}</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link type="text/css" href="../../static/finance_site/css/addpage.css" rel="stylesheet">
 
 	{% block dop_info %}
 	{% endblock %}
@@ -15,14 +14,25 @@
 		<span class="finances">FINANCES</span>
 		<div class="login">
 			<ul>
+
 				{% if request.path == '/users/profile/' %}
                 <li class="btn_active"><a href="/users/profile">Профиль</a></li>
 				{% else %}
 				<li class="btn"><a href="/users/profile">Профиль</a></li>
 				{% endif %}
 
+				{% if request.path == '/addpage/' %}
+				<li class="btn_active"><a href="/addpage/">Добавление операции</a></li>
+				{% else %}
 				<li class="btn"><a href="/addpage/">Добавление операции</a></li>
+				{% endif %}
+
+				{% if request.path == '/dashboard/' %}
+				<li class="btn_active"><a href="/dashboard/">Статистика</a></li>
+				{% else %}
 				<li class="btn"><a href="/dashboard/">Статистика</a></li>
+				{% endif %}
+
                 <form id="logoutForm" method="post" action="{% url 'users:logout' %}">
 		            {% csrf_token %}
                     <li class="btn"><a href="#" onclick="document.getElementById('logoutForm').submit(); return false;">Выйти</a></li>
@@ -33,5 +43,17 @@
 	</header>
 
 {% block content %} {% endblock %}
-
+<div class="footer">
+    <div class="footer-content">
+        <span class="footer-finances">© 2024, Finances</span>
+        <img src="../../static/finance_site/images/Logo.svg" width="30px" height="30px" alt="Логотип">
+    </div>
+    <div class="footer-links">
+        Контакты | Авторы
+    </div>
+    <div class="footer-emails">
+        <span>Почта | github.com/Birobizhan</span>
+        <span>miroshin0515@mail.ru | github.com/descip</span>
+    </div>
+	</div>
 </body>
